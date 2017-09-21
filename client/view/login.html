@@ -1,0 +1,72 @@
+<template name="formulario">
+	  <h2>Formulario de Login</h2>
+	  <form id="login" class="form-horizontal roundedSized" style="background-color:white; padding:4% 2% 1% 2%;">
+		<div class="form-group">
+		  <label class="control-label col-sm-2" for="email">Usuario:</label>
+		  <div class="col-sm-10">
+			<input type="text" class="form-control" id="user" placeholder="Entre com seu nome de usuario" name="user">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="control-label col-sm-2" for="pwd">Senha:</label>
+		  <div class="col-sm-10">          
+			<input type="password" class="form-control" id="senha" placeholder="Entre com sua senha" name="senha">
+		  </div>
+		</div>
+		<div class="form-group">        
+		  <div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+			  <label><input type="checkbox" name="remember"> Lembrar-me</label>
+			</div>
+		  </div>
+		</div>
+		<div class="form-group">        
+		  <div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-default">Entrar</button> <a href="/register">Ainda não está cadastrado? Clique aqui!</a>
+		  </div>
+		</div>
+	  </form>
+</template>
+
+
+<template name="cadastro">
+	  <h2>Cadastro de novo usuario</h2>
+	  <form id="cadastro" class="form-horizontal roundedSized" style="background-color:white; padding:4% 2% 1% 2%;">
+		<div class="form-group">
+		  <label class="control-label col-sm-2" for="pwd">Nome:</label>
+		  <div class="col-sm-10">          
+			<input type="text" class="form-control" id="nome" placeholder="Entre com sua nome completo" name="nome">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="control-label col-sm-2" for="pwd">E-mail:</label>
+		  <div class="col-sm-10">          
+			<input type="mail" class="form-control" id="mail" placeholder="Entre com seu endereço de E-mail" name="mail">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="control-label col-sm-2" for="email">Usuario:</label>
+		  <div class="col-sm-10">
+			<input type="text" class="form-control" id="user" placeholder="Entre com seu nome de usuario" name="user">
+		  </div>
+		</div>
+		<div class="form-group">
+		  <label class="control-label col-sm-2" for="pwd">Senha:</label>
+		  <div class="col-sm-10">          
+			<input type="password" class="form-control" id="senha" placeholder="Entre com sua senha" name="senha">
+		  </div>
+		</div>
+		<div class="form-group">        
+		  <div class="col-sm-offset-2 col-sm-10">
+			<div class="checkbox">
+			  <label><input type="checkbox" name="remember"> Lembrar-me</label>
+			</div>
+		  </div>
+		</div>
+		<div class="form-group">        
+		  <div class="col-sm-offset-2 col-sm-10">
+			<button type="submit" class="btn btn-default">Cadastrar</button> <a href="../">Cancelar	</a>
+		  </div>
+		</div>
+	  </form>
+</template>

@@ -1,3 +1,5 @@
 iron:router
+iron:layout
 tbws:bootstrap
+kit:sweetalert
 remove insecure
