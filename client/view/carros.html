@@ -1,0 +1,63 @@
+<template name="meusCarros">
+	<h2>Meus Carros</h2>
+	<div class="col-md-10 roundedSized" style="background-color:white; padding:4% 2% 1% 2%;">
+		<button id="new" type="button" class="btn btn-info" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span></button>
+		<table class="table table-striped">
+		  <thead class="thead-inverse">
+			<tr>
+			  <th>#</th>
+			  <th>Marca</th>
+			  <th>Modelo</th>
+			  <th>Placa</th>
+			  <th width="5%"></th>
+			  <th width="5%"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  {{#each veiculos}}
+			<tr>
+			  <th scope="row">{{@index}}</th>
+			  <td>{{marca}}</td>
+			  <td>{{modelo}}</td>
+			  <td>{{placa}}</td>
+			  <td><button type="button" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td>
+			  <td><button type="button" name="delete" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+			</tr>
+			{{/each}}
+		  </tbody>
+		</table>
+	</div>
+	<!-- modal -->
+	<div class="modal fade" id="formularioCadCar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h2 class="modal-title" style="color:black;" id="exampleModalLabel"><b>Adicionar um novo carro</b></h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  <form id="formCadCar">
+			  <div class="modal-body">			
+				  <div class="form-group">
+					<label for="marca" class="form-control-label">Marca:</label>
+					<input type="text" value="" class="form-control" id="marca">
+				  </div>
+				  <div class="form-group">
+					<label for="modelo" class="form-control-label">Modelo:</label>
+					<input type="text" value="" class="form-control" id="modelo">
+				  </div>
+				  <div class="form-group">
+					<label for="placa" class="form-control-label">Placa:</label>
+					<input type="text" value="" class="form-control" id="placa">
+				  </div>			
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			  </div>
+		  </form>
+		</div>
+	  </div>
+	</div>
+</template>

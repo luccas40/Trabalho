@@ -2,4 +2,7 @@ iron:router
 iron:layout
 tbws:bootstrap
 kit:sweetalert
+rzymek:fullcalendar
+mfpierre:chartist-js
 remove insecure
+remove autopublish

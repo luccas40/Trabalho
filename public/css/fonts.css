@@ -1,9 +1,20 @@
 @font-face {
-    font-family: 'Brandon_bold'; /*a name to be used later*/
-    src: url('../fonts/Brandon_bld.otf'); /*URL to font*/
+    font-family: Brandon_bold; /*a name to be used later*/
+    src: url('/fonts/Brandon_bld.otf'); /*URL to font*/
+	font-weight: bold;
 }
 
 @font-face {
-    font-family: 'Brandom_black'; /*a name to be used later*/
-    src: url('../fonts/Brandon_blk.otf'); /*URL to font*/
+    font-family: Brandom_black; /*a name to be used later*/
+    src: url('/fonts/Brandon_blk.otf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: Brandom_medium; /*a name to be used later*/
+    src: url('/fonts/Brandon_med.otf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: Brandom_regular; /*a name to be used later*/
+    src: url('/fonts/Brandon_reg.otf'); /*URL to font*/
 }

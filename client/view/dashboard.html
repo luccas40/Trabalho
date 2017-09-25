@@ -1,0 +1,30 @@
+<template name="dashboard">	
+	<div class="col-md-10">
+	
+		<h5>Dashboard</h5>
+		<h2 class="dashboardTitle">Visao Geral</h2>
+		<div class="col-md-12" style="margin-top:2%;">
+			<div class="col-md-3 col-sm-4 col-xs-6 ">
+				<span class="topText"><i class="fa fa-user"></i> Total de Gastos</span>
+				<div class="topNumber">R$ 2500</div>
+				<span class="topText"><i class="green">4% </i> From last Week</span>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6 borderDireito">
+				<span class="topText"><i class="fa fa-clock-o"></i> KM/L</span>
+				<div class="topNumber">12.50</div>
+				<span class="topText"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6 borderDireito">
+				<span class="topText"><i class="fa fa-clock-o"></i> KM Percorridos</span>
+				<div class="topNumber">123.50</div>
+				<span class="topText"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+			</div>
+			<div class="col-md-3 col-sm-4 col-xs-6 borderDireito">
+				<span class="topText"><i class="fa fa-clock-o"></i> Eventos Agendados</span>
+				<div class="topNumber">3</div>
+				<span class="topText"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+			</div>
+		</div>
+		<div class="col-md-12 calendario">{{> fullcalendar id="myCalendar"}}</div>
+	</div>	
+</template>

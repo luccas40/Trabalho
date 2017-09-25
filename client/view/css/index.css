@@ -1,3 +1,4 @@
+@import url("/css/fonts.css");
 .centered{
 	float: none; 
 	margin: 0 auto;	
@@ -16,9 +17,15 @@
 
 
 body {
-	background-color:#6098f2;
+	background-color:#3f48af;
+	font-family:Brandom_medium;
+	font-size:16px;
     position: relative;
     overflow-x: hidden;
+}
+h1, h2, h3{
+	color:white;
+	font-family: Brandon_bold;
 }
 body,
 html { height: 100%;}

@@ -1,0 +1,43 @@
+import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
+import { check } from 'meteor/check';
+import { Carros } from '/imports/collections/carros';
+
+Meteor.methods(
+	{'carro.save'(carro, id){
+		check(carro, {
+			marca: String,
+			modelo: String,
+			placa: String,
+			owner: String
+		});		
+	carro.owner = this.userId;
+	if(id == null){	
+		if(Carros.find({placa: carro.placa}).count() == 0){
+			Carros.insert(carro);
+		}
+	}else{
+		Carros.update(id, {$set:carro});
+	}
+	
+	}
+});
+
+	Meteor.methods(
+		{'carro.delete'(id){
+			check(id, String);		
+			Carros.remove(id);
+		}
+	});
+
+	Meteor.methods(
+		{'carro.find'(id){
+			check(id, String);
+			return Carros.findOne({_id: id});
+		}
+	});
+
+	Meteor.publish('carro.findByUser', function(){
+			return Carros.find({owner: this.userId});		
+		}
+	);

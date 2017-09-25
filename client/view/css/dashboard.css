@@ -1,0 +1,29 @@
+.dashboardTitle{
+	border-bottom: 1px solid #D9DEE4;
+	padding-bottom: 1%;
+}
+
+.borderDireito{
+	border-left: 3px solid #c0c8e0;
+}
+
+.topText{
+	font-family:Brandom_medium;
+	font-size:13px;
+	color:#eaeffc;
+}
+
+.topNumber{
+	font-family: Brandon_bold;
+	font-size: 30px;
+	color:#c0c8e0;
+}
+
+.calendario{
+	padding-top:3%;
+	padding-bottom:3%;
+	margin-top:5%;
+	background-color:#535ee0;
+	border-radius:5px;
+	
+}
