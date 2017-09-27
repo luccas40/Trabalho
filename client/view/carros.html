@@ -36,27 +36,8 @@
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			  <span aria-hidden="true">&times;</span>
 			</button>
-		  </div>
-		  <form id="formCadCar">
-			  <div class="modal-body">			
-				  <div class="form-group">
-					<label for="marca" class="form-control-label">Marca:</label>
-					<input type="text" value="" class="form-control" id="marca">
-				  </div>
-				  <div class="form-group">
-					<label for="modelo" class="form-control-label">Modelo:</label>
-					<input type="text" value="" class="form-control" id="modelo">
-				  </div>
-				  <div class="form-group">
-					<label for="placa" class="form-control-label">Placa:</label>
-					<input type="text" value="" class="form-control" id="placa">
-				  </div>			
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Salvar</button>
-			  </div>
-		  </form>
+		  </div>		  
+		  {{> Template.dynamic template="form" data=campos}}
 		</div>
 	  </div>
 	</div>

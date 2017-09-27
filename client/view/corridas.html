@@ -1,5 +1,44 @@
 <template name="corridas">
 	<h2>Minhas Corridas</h2>
 	<div class="col-md-10 roundedSized" style="background-color:white; padding:4% 2% 1% 2%;">
+		<button id="new" type="button" class="btn btn-info" data-toggle="modal" data-target="#add"><span class="glyphicon glyphicon-plus"></span></button>
+		<table class="table table-striped">
+		  <thead class="thead-inverse">
+			<tr>
+			  <th>#</th>
+			  <th>KM Rodados</th>
+			  <th>Data</th>
+			  <th>Carro</th>
+			  <th width="5%"></th>
+			  <th width="5%"></th>
+			</tr>
+		  </thead>
+		  <tbody>
+		  {{#each carCorrida}}
+			<tr>
+			  <th scope="row">{{@index}}</th>
+			  <td>{{marca}}</td>
+			  <td>{{modelo}}</td>
+			  <td>{{placa}}</td>
+			  <td><button type="button" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td>
+			  <td><button type="button" name="delete" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
+			</tr>
+			{{/each}}
+		  </tbody>
+		</table>
+	</div>
+	<!-- modal -->
+	<div class="modal fade" id="modalCorrida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h2 class="modal-title" style="color:black;" id="exampleModalLabel"><b>Formulario de Corrida</b></h2>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  {{> Template.dynamic template="form" data=campos}}
+		</div>
+	  </div>
 	</div>
 </template>

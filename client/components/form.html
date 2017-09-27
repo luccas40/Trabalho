@@ -1,0 +1,25 @@
+<template name="form">
+	<form id="{{this.formName}}">
+	  <div class="modal-body">
+		{{#each this.inputs}}
+			{{#if equals tipo "combobox"}}
+			  <div class="form-group">
+				<label for="{{nome}}" class="form-control-label">{{desc}}:</label>
+					<select id="{{nome}}" class="form-control">
+						<option value="teste">Teste</option>
+					</select>
+			  </div>
+			{{else}}
+			  <div class="form-group">
+				<label for="{{nome}}" class="form-control-label">{{desc}}:</label>
+				<input type="{{tipo}}" value="" class="form-control" id="{{nome}}">
+			  </div>
+		  {{/if}}
+		{{/each}}		
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button type="submit" class="btn btn-primary">Salvar</button>
+	  </div>
+	</form>
+</template>
