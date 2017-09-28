@@ -6,7 +6,9 @@
 			  <div class="form-group">
 				<label for="{{nome}}" class="form-control-label">{{desc}}:</label>
 					<select id="{{nome}}" class="form-control">
-						<option value="teste">Teste</option>
+					{{#each items}}
+						<option value="{{_id}}">{{modelo}}</option>
+					{{/each}}
 					</select>
 			  </div>
 			{{else}}

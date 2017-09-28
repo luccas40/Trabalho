@@ -1,6 +1,9 @@
 import { Corridas } from '/imports/collections/corridas';
+import { Carros } from '/imports/collections/carros';
 import { Session } from 'meteor/session';
 var me = this;
+
+Meteor.subscribe('carro.findByUser');
 
 Template.corridas.helpers({
     carCorrida: function(){
@@ -10,7 +13,7 @@ Template.corridas.helpers({
 	campos:	{formName:"cadCorrida", inputs: [
 			{desc:"KM", nome:'km', tipo:"number"},
 			{desc:"Data", nome:'data', tipo:"date"},
-			{desc:"Carro", nome:'carro', tipo:"combobox"}
+			{desc:"Carro", nome:'carro', tipo:"combobox", items:Carros.find()}
 	]}
 });
 
@@ -19,30 +22,28 @@ Template.corridas.events({
 	'click #new'(e){
 		e.preventDefault();
 		Session.set('selectedItem', null);
-		me.$("#marca").val(null);
-		me.$("#modelo").val(null);
-		me.$("#placa").val(null);
+		me.$("#km").val(null);
+		me.$("#carro").val(null);
 		me.$("#modalCorrida").modal("show");
 		
 	},
 	'click button[name=edit]'(e){
 		e.preventDefault();
 		Session.set("selectedItem", this._id);
-		me.$("#marca").val(this.marca);
-		me.$("#modelo").val(this.modelo);
-		me.$("#placa").val(this.placa);
+		me.$("#km").val(this.km);
+		me.$("#carro").val(this.carro._id);
 		me.$("#modalCorrida").modal("show");
 	},
-	'submit #formCadCar'(e){
+	'submit #cadCorrida'(e){
 		e.preventDefault();
-		var carro = {
-			marca: e.target.marca.value,
-			modelo: e.target.modelo.value,
-			placa: e.target.placa.value,
+		var corrida = {
+			km: Number(e.target.km.value),
+			data: new Date(e.target.data.value),
+			carroID: e.target.carro.value,
 			owner: 'owner'
 		}
 		
-		Meteor.call('corrida.save', carro, Session.get('selectedItem'), function(err, result){
+		Meteor.call('corrida.save', corrida, Session.get('selectedItem'), function(err, result){
 			if(err){
 				swal("Oops!", "Alguma coisa deu errado", "error")
 			}else{

@@ -8,8 +8,10 @@ Meteor.methods(
 		check(corrida, {
 			km: Number,
 			data: Date,
-			carroID: String
-		});	
+			carroID: String,
+			owner: String
+		});
+	corrida.owner = this.userId;		
 	if(id == null){		
 		Corridas.insert(corrida);
 	}else{
@@ -35,5 +37,10 @@ Meteor.methods(
 
 	Meteor.publish('corrida.findByUser', function(){
 			return Corridas.find({owner: this.userId});		
+		}
+	);
+	
+	Meteor.publish('corrida.findByCar', function(id){
+			return Corridas.find({carroID: id});		
 		}
 	);

@@ -18,9 +18,10 @@
 		  {{#each myDespesas}}
 			<tr>
 			  <th scope="row">{{@index}}</th>
-			  <td>{{marca}}</td>
-			  <td>{{modelo}}</td>
-			  <td>{{placa}}</td>
+			  <td>{{descricao}}</td>
+			  <td>{{tipo}}</td>
+			  <td>{{valor}}</td>
+			  <td>{{formatDate data}}</td>
 			  <td><button type="button" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td>
 			  <td><button type="button" name="delete" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
 			</tr>
@@ -29,7 +30,7 @@
 		</table>
 	</div>
 	<!-- modal -->
-	<div class="modal fade" id="modalCorrida" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="modalDespesas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 		<div class="modal-content">
 		  <div class="modal-header">

@@ -17,9 +17,9 @@
 		  {{#each carCorrida}}
 			<tr>
 			  <th scope="row">{{@index}}</th>
-			  <td>{{marca}}</td>
-			  <td>{{modelo}}</td>
-			  <td>{{placa}}</td>
+			  <td>{{km}}</td>
+			  <td>{{formatDate data}}</td>
+			  <td>{{carro.modelo}}</td>
 			  <td><button type="button" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td>
 			  <td><button type="button" name="delete" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
 			</tr>

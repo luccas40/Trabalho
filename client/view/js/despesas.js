@@ -4,12 +4,15 @@ var me = this;
 
 Template.despesas.helpers({
     myDespesas: function(){
-		Meteor.subscribe('corrida.findByUser');
+		Meteor.subscribe('despesa.findByUser');
         return Despesas.find();
     },
-	campos:	{formName:"cadCorrida", inputs: [
+	campos:	{formName:"cadDespesas", inputs: [
 			{desc:"Descricao", nome:'descricao', tipo:"text"},
-			{desc:"Tipo", nome:'tipo', tipo:"combobox"},
+			{desc:"Tipo", nome:'tipo', tipo:"combobox", items:[
+				{_id:'Gasolina', modelo:'Gasolina'}, 
+				{_id:'Revisao', modelo:'Revisao'}, 
+				{_id:'Multa', modelo:'Multa'}]},
 			{desc:"Valor", nome:'valor', tipo:"number"},
 			{desc:"Data", nome:'data', tipo:"date"}
 	]}
@@ -23,8 +26,7 @@ Template.despesas.events({
 		me.$("#descricao").val(null);
 		me.$("#tipo").val(null);
 		me.$("#valor").val(null);
-		me.$("#data").val(null);
-		me.$("#modalCorrida").modal("show");
+		me.$("#modalDespesas").modal("show");
 		
 	},
 	'click button[name=edit]'(e){
@@ -33,24 +35,23 @@ Template.despesas.events({
 		me.$("#descricao").val(this.descricao);
 		me.$("#tipo").val(this.tipo);
 		me.$("#valor").val(this.valor);
-		me.$("#data").val(this.data);
-		me.$("#modalCorrida").modal("show");
+		me.$("#modalDespesas").modal("show");
 	},
-	'submit #formCadCar'(e){
+	'submit #cadDespesas'(e){
 		e.preventDefault();
-		var carro = {
+		var despesa = {
 			descricao: e.target.descricao.value,
 			tipo: e.target.tipo.value,
-			valor: e.target.valor.value,
-			data: e.target.data.value,
+			valor: Number(e.target.valor.value),
+			data: new Date(e.target.data.value),
 			owner: 'owner'
 		}
 		
-		Meteor.call('corrida.save', carro, Session.get('selectedItem'), function(err, result){
+		Meteor.call('despesa.save', despesa, Session.get('selectedItem'), function(err, result){
 			if(err){
 				swal("Oops!", "Alguma coisa deu errado", "error")
 			}else{
-				me.$("#modalCorrida").modal("toggle");				
+				me.$("#modalDespesas").modal("toggle");				
 			}			
 		});
 	},
@@ -65,7 +66,7 @@ Template.despesas.events({
 		  confirmButtonText: "Sim!",
 		  closeOnConfirm: false
 		}, function(){
-			Meteor.call('corrida.delete', id);
+			Meteor.call('despesa.delete', id);
 			  swal("Poof!", "Registro deletado!", "success");
 			}
 		);
