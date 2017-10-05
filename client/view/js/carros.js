@@ -5,7 +5,10 @@ Template.meusCarros.helpers({
 	campos:	{formName:"formCadCar", inputs: [
 			{desc:"Marca", nome:'marca', tipo:"text"},
 			{desc:"Modelo", nome:'modelo', tipo:"text"},
-			{desc:"Placa", nome:'placa', tipo:"text"}
+			{desc:"Placa", nome:'placa', tipo:"text"},
+			{desc:"Ano", nome:'ano', tipo:"Number"},
+			{desc:"KM Atual", nome:'kmatual', tipo:"Number"},
+			{desc:"KM/L", nome:'kml', tipo:"Number"}
 	]}
 });
 
@@ -17,6 +20,9 @@ Template.meusCarros.events({
 		me.$("#marca").val(null);
 		me.$("#modelo").val(null);
 		me.$("#placa").val(null);
+		me.$("#ano").val(null);
+		me.$("#kmatual").val(null);
+		me.$("#kml").val(null);
 		me.$("#formularioCadCar").modal("show");
 		
 	},
@@ -26,6 +32,9 @@ Template.meusCarros.events({
 		me.$("#marca").val(this.marca);
 		me.$("#modelo").val(this.modelo);
 		me.$("#placa").val(this.placa);
+		me.$("#ano").val(this.ano);
+		me.$("#kmatual").val(this.kmAtual);
+		me.$("#kml").val(this.kmByLitro);
 		me.$("#formularioCadCar").modal("show");
 	},
 	'submit #formCadCar'(e){
@@ -34,6 +43,10 @@ Template.meusCarros.events({
 			marca: e.target.marca.value,
 			modelo: e.target.modelo.value,
 			placa: e.target.placa.value,
+			ano: Number(e.target.ano.value),
+			kmAtual: Number(e.target.kmatual.value),
+			kmByLitro: Number(e.target.kml.value),
+			rodas:{trocado:new Date(), calibrado:new Date()},
 			owner: 'owner'
 		}
 		

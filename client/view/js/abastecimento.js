@@ -1,53 +1,52 @@
-import { Corridas } from '/imports/collections/corridas';
 import { Carros } from '/imports/collections/carros';
 import { Session } from 'meteor/session';
 var me = this;
 
 Meteor.subscribe('carro.findByUser');
 
-Template.corridas.helpers({
-    carCorrida: function(){
-		Meteor.subscribe('corrida.findByUser');
-        return Corridas.find();
-    },
-	campos:	{formName:"cadCorrida", inputs: [
-			{desc:"KM", nome:'km', tipo:"number"},
+Template.abastecimento.helpers({
+	campos:	{formName:"cadAbast", inputs: [
+			{desc:"Litros", nome:'litros', tipo:"number"},
 			{desc:"Data", nome:'data', tipo:"date"},
-			{desc:"Carro", nome:'carro', tipo:"combobox", items:Carros.find()}
+			{desc:"Valor (R$)", nome:'valor', tipo:"Number"},
+			{desc:"Carro", nome:'carroID', tipo:"combobox", items:Carros.find()}
 	]}
 });
 
 
-Template.corridas.events({
+Template.abastecimento.events({
 	'click #new'(e){
 		e.preventDefault();
 		Session.set('selectedItem', null);
-		me.$("#km").val(null);
-		me.$("#carro").val(null);
-		me.$("#modalCorrida").modal("show");
+		me.$("#litros").val(null);
+		me.$("#valor").val(null);
+		me.$("#carroID").val(null);
+		me.$("#modalAbast").modal("show");
 		
 	},
 	'click button[name=edit]'(e){
 		e.preventDefault();
 		Session.set("selectedItem", this._id);
-		me.$("#km").val(this.km);
-		me.$("#carro").val(this.carro._id);
-		me.$("#modalCorrida").modal("show");
+		me.$("#litros").val(this.litros);
+		me.$("#valor").val(this.valor);
+		me.$("#carroID").val(this.carroID._id);
+		me.$("#modalAbast").modal("show");
 	},
-	'submit #cadCorrida'(e){
+	'submit #cadAbast'(e){
 		e.preventDefault();
 		var corrida = {
-			km: Number(e.target.km.value),
+			litros: Number(e.target.litros.value),
+			valor: Number(e.target.valor.value),
 			data: new Date(e.target.data.value),
-			carroID: e.target.carro.value,
+			carroID: e.target.carroID.value,
 			owner: 'owner'
 		}
 		
-		Meteor.call('corrida.save', corrida, Session.get('selectedItem'), function(err, result){
+		Meteor.call('abastecimento.save', corrida, Session.get('selectedItem'), function(err, result){
 			if(err){
 				swal("Oops!", "Alguma coisa deu errado", "error")
 			}else{
-				me.$("#modalCorrida").modal("toggle");				
+				me.$("#modalAbast").modal("toggle");				
 			}			
 		});
 	},
@@ -62,7 +61,7 @@ Template.corridas.events({
 		  confirmButtonText: "Sim!",
 		  closeOnConfirm: false
 		}, function(){
-			Meteor.call('corrida.delete', id);
+			Meteor.call('abastecimento.delete', id);
 			  swal("Poof!", "Registro deletado!", "success");
 			}
 		);

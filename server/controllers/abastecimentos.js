@@ -4,12 +4,12 @@ import { check } from 'meteor/check';
 import { Abastecimentos } from '/imports/collections/abastecimentos';
 
 Meteor.methods(
-	{'abastecimento.save'(abastecimento, id, carro){
+	{'abastecimento.save'(abastecimento, id){
 		check(abastecimento, {
 			litros: Number,
 			valor: Number,
 			data: Date,
-			carro: String,
+			carroID: String,
 			owner: String
 		});
 	abastecimento.owner = this.userId;		
@@ -26,13 +26,6 @@ Meteor.methods(
 		{'abastecimento.delete'(id){
 			check(id, String);		
 			Abastecimentos.remove(id);
-		}
-	});
-
-	Meteor.methods(
-		{'abastecimento.find'(id){
-			check(id, String);
-			return Abastecimentos.findOne({_id: id});
 		}
 	});
 

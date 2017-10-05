@@ -1,3 +1,18 @@
 import { Mongo } from 'meteor/mongo';
-export const Carros = new Mongo.Collection("carros");
-
+import { Abastecimentos } from '/imports/collections/abastecimentos';
+export const Carros = new Mongo.Collection("carros", {
+	transform:	function(doc){
+		var valor = 0;
+		Abastecimentos.find({carroID: doc._id}).forEach(function(item){
+			valor += item.valor;
+		});
+		doc.totalGasto = valor;
+		doc.ultimaAbastecida = Abastecimentos.findOne({carroID: doc._id}, {sort: {data: -1}})
+		if(doc.ultimaAbastecida == null)
+			doc.kmAPercorrer = 0;
+		else
+			doc.kmAPercorrer = doc.ultimaAbastecida.litros * doc.kmByLitro;
+		return doc;
+		
+	}
+});

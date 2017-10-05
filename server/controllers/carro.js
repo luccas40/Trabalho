@@ -12,7 +12,6 @@ Meteor.methods(
 			ano: Number,
 			kmByLitro: Number,
 			kmAtual: Number,
-			kmARodar: Number,
 			rodas: {trocado:Date, calibrado:Date},			
 			owner: String
 		});		
@@ -34,14 +33,7 @@ Meteor.methods(
 			Carros.remove(id);
 		}
 	});
-
-	Meteor.methods(
-		{'carro.find'(id){
-			check(id, String);
-			return Carros.findOne({_id: id});
-		}
-	});
-
+	
 	Meteor.publish('carro.findByUser', function(){
 			return Carros.find({owner: this.userId});		
 		}
