@@ -9,17 +9,20 @@
 			  <th>Marca</th>
 			  <th>Modelo</th>
 			  <th>Placa</th>
+			  <th>Ano</th>
+			  <th>KM Rodados</th>
 			  <th width="5%"></th>
 			  <th width="5%"></th>
 			</tr>
 		  </thead>
 		  <tbody>
-		  {{#each veiculos}}
+		  {{#each meusVeiculos}}
 			<tr>
 			  <th scope="row">{{@index}}</th>
 			  <td>{{marca}}</td>
 			  <td>{{modelo}}</td>
 			  <td>{{placa}}</td>
+			  <td>{{ano}}</td>
 			  <td><button type="button" name="edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></button></td>
 			  <td><button type="button" name="delete" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>
 			</tr>

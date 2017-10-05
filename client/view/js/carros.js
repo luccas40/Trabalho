@@ -1,12 +1,7 @@
-import { Carros } from '/imports/collections/carros';
 import { Session } from 'meteor/session';
 var me = this;
 
 Template.meusCarros.helpers({
-    veiculos: function(){
-		Meteor.subscribe('carro.findByUser');
-        return Carros.find();
-    },
 	campos:	{formName:"formCadCar", inputs: [
 			{desc:"Marca", nome:'marca', tipo:"text"},
 			{desc:"Modelo", nome:'modelo', tipo:"text"},

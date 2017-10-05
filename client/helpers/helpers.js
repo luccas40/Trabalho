@@ -1,3 +1,5 @@
+import { Carros } from '/imports/collections/carros';
+
 
 Template.registerHelper( 'equals', ( a1, a2 ) => {
   return a1 === a2;
@@ -14,4 +16,9 @@ Template.registerHelper( 'authors', () => {
   if ( authors ) {
     return authors;
   }
+});
+
+Template.registerHelper('meusVeiculos', () => {
+	Meteor.subscribe('carro.findByUser');
+    return Carros.find();	
 });

@@ -9,6 +9,11 @@ Meteor.methods(
 			marca: String,
 			modelo: String,
 			placa: String,
+			ano: Number,
+			kmByLitro: Number,
+			kmAtual: Number,
+			kmARodar: Number,
+			rodas: {trocado:Date, calibrado:Date},			
 			owner: String
 		});		
 	carro.owner = this.userId;

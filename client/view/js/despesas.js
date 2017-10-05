@@ -1,4 +1,4 @@
-import { Despesas } from '/imports/collections/despesas';
+/*import { Despesas } from '/imports/collections/despesas';
 import { Session } from 'meteor/session';
 var me = this;
 
@@ -72,5 +72,5 @@ Template.despesas.events({
 		);
 	}
 });
-
+*/
 
