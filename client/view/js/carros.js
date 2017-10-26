@@ -46,7 +46,6 @@ Template.meusCarros.events({
 			ano: Number(e.target.ano.value),
 			kmAtual: Number(e.target.kmatual.value),
 			kmByLitro: Number(e.target.kml.value),
-			rodas:{trocado:new Date(), calibrado:new Date()},
 			owner: 'owner'
 		}
 		

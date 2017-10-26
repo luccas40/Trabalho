@@ -12,12 +12,13 @@ Meteor.methods(
 			ano: Number,
 			kmByLitro: Number,
 			kmAtual: Number,
-			rodas: {trocado:Date, calibrado:Date},			
 			owner: String
 		});		
 	carro.owner = this.userId;
 	if(id == null){	
 		if(Carros.find({placa: carro.placa}).count() == 0){
+			carro.rodas = {km:0, calibrado:new Date()};
+			carro.revisao = 0;
 			Carros.insert(carro);
 		}
 	}else{

@@ -13,10 +13,11 @@ Meteor.methods(
 			owner: String
 		});
 	abastecimento.owner = this.userId;		
-	if(id == null){		
+	if(id == null){
+		
 		Abastecimentos.insert(abastecimento);
 	}else{
-		Abastecimentos.update(id, {$set:abastecimento});
+		//Abastecimentos.update(id, {$set:abastecimento});
 	}
 	
 	}

@@ -1,5 +1,6 @@
 iron:router
 iron:layout
+matb33:collection-hooks
 tbws:bootstrap
 kit:sweetalert
 rzymek:fullcalendar
