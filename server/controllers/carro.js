@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 import { Carros } from '/imports/collections/carros';
+import { Abastecimentos } from '/imports/collections/abastecimentos';
 
 Meteor.methods(
 	{'carro.save'(carro, id){
@@ -36,6 +37,11 @@ Meteor.methods(
 	});
 	
 	Meteor.publish('carro.findByUser', function(){
-			return Carros.find({owner: this.userId});		
+			var car = Carros.find({owner: this.userId});
+			car.gastoPorMes = Abastecimentos.aggregate([
+				{ $match:{carroID: car._id} },
+				{ $group:{_id: {$month: "$data"}, "valor": {$sum:"$valor"}} }
+			]);
+			return car;		
 		}
 	);

@@ -7,6 +7,7 @@ export const Carros = new Mongo.Collection("carros", {
 			valor += item.valor;
 		});
 		doc.totalGasto = valor;
+		doc.gastoPorMes = 0;
 		doc.ultimaAbastecida = Abastecimentos.findOne({carroID: doc._id}, {sort: {data: -1}})
 		if(doc.ultimaAbastecida == null)
 			doc.kmAPercorrer = 0;

@@ -98,6 +98,8 @@ Template.dashboard.helpers({
 
 
 
+
+
 Template.dashboard.events({
 	'change #carroSelecionado'(e){
 		Session.set('selected', e.target.value);
@@ -118,17 +120,19 @@ function getSelectedCar(){
 }
 
 function updateCharts(car){
-	var calibraTempo = Math.round((new Date().getTime()-car.rodas.calibrado.getTime())/(1000*60*60*24));
-	troca.data.datasets[0].data[0] = 50000-car.rodas.km; // KM Restante
-	troca.data.datasets[0].data[1] = car.rodas.km; // KM Rodados
-	troca.options.elements.center.text = Math.round((car.rodas.km/50000)*100)+"%";
-	gTroca.update();
-	calibra.data.datasets[0].data[0] = (20-calibraTempo < 0)?0:20-calibraTempo; // Dias Restantes
-	calibra.data.datasets[0].data[1] = calibraTempo; // Dias Percorridos
-	calibra.options.elements.center.text = Math.round((calibraTempo/20)*100)+"%";
-	gCalibra.update();	
-	revisa.data.datasets[0].data[0] = 10000-car.revisao; // KM Restantes
-	revisa.data.datasets[0].data[1] = car.revisao; // KM Percorridos
-	revisa.options.elements.center.text = Math.round((car.revisao/10000)*100)+"%";
-	gRevisao.update();	
+	if(car != null){
+		var calibraTempo = Math.round((new Date().getTime()-car.rodas.calibrado.getTime())/(1000*60*60*24));
+		troca.data.datasets[0].data[0] = 50000-car.rodas.km; // KM Restante
+		troca.data.datasets[0].data[1] = car.rodas.km; // KM Rodados
+		troca.options.elements.center.text = Math.round((car.rodas.km/50000)*100)+"%";
+		gTroca.update();
+		calibra.data.datasets[0].data[0] = (20-calibraTempo < 0)?0:20-calibraTempo; // Dias Restantes
+		calibra.data.datasets[0].data[1] = calibraTempo; // Dias Percorridos
+		calibra.options.elements.center.text = Math.round((calibraTempo/20)*100)+"%";
+		gCalibra.update();	
+		revisa.data.datasets[0].data[0] = 10000-car.revisao; // KM Restantes
+		revisa.data.datasets[0].data[1] = car.revisao; // KM Percorridos
+		revisa.options.elements.center.text = Math.round((car.revisao/10000)*100)+"%";
+		gRevisao.update();	
+	}
 }
