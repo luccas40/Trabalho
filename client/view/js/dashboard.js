@@ -5,7 +5,7 @@ import '/imports/js/Chart.bundle.min.js';
 import '/imports/js/myChart.js';
 
 var me = this;
-
+var mesLabel = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
 var troca;
 var calibra;
 var revisa;
@@ -20,7 +20,7 @@ Template.dashboard.onRendered(function(){
 	Session.set('selected', null);
 	gasto = {
 			type: 'line',
-			data: {	labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+			data: {	labels: [],
 					datasets: [{label: "", fill: false, data: [0, 100, 100, 250, 213], backgroundColor: "#72a8ff", borderColor: "#72a8ff"}]
 			},
 			options: {
@@ -121,6 +121,7 @@ function getSelectedCar(){
 
 function updateCharts(car){
 	if(car != null){
+		//console.log(car);
 		var calibraTempo = Math.round((new Date().getTime()-car.rodas.calibrado.getTime())/(1000*60*60*24));
 		troca.data.datasets[0].data[0] = 50000-car.rodas.km; // KM Restante
 		troca.data.datasets[0].data[1] = car.rodas.km; // KM Rodados
@@ -134,5 +135,16 @@ function updateCharts(car){
 		revisa.data.datasets[0].data[1] = car.revisao; // KM Percorridos
 		revisa.options.elements.center.text = Math.round((car.revisao/10000)*100)+"%";
 		gRevisao.update();	
+
+
+		for(let startIndex = car.gastoPorMes[0].data.getMonth(); startIndex<= car.gastoPorMes[0].data.getMonth()+5; startIndex++){
+			var a = startIndex;
+			if(a >= 12)
+				a -=12;
+			gasto
+		}
+		
+
+
 	}
 }

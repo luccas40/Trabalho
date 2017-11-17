@@ -55,7 +55,7 @@ Template.abastecimento.events({
 		const id = this._id;
 		swal({
 		  title: "Tem certeza?",
-		  text: "Uma vez deletado, você não poderá recuperar!",
+		  text: "Uma vez deletado, vocï¿½ nï¿½o poderï¿½ recuperar!",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Sim!",

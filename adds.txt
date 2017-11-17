@@ -7,4 +7,4 @@ rzymek:fullcalendar
 mfpierre:chartist-js
 remove insecure
 remove autopublish
-meteorhacks:aggregate
+meteor add meteorhacks:aggregate
