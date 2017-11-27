@@ -1,9 +1,6 @@
 import { Template } from 'meteor/templating';
 
-
-
-
-Template.appTemplate.onRendered(function(){
+Template.layout.onRendered(function(){
 	var me = this;
 	var trigger = me.$('.hamburger'),
 		overlay = me.$('.overlay'); 

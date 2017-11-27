@@ -1,8 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Session } from 'meteor/session';
-import { Carros } from '/imports/collections/carros';
-import '/imports/js/Chart.bundle.min.js';
-import '/imports/js/myChart.js';
 
 var me = this;
 var mesLabel = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
@@ -17,7 +14,6 @@ var gRevisao;
 var gGasto;
 
 Template.dashboard.onRendered(function(){
-	Session.set('selected', null);
 	gasto = {
 			type: 'line',
 			data: {	labels: [],
@@ -90,10 +86,15 @@ Template.dashboard.onRendered(function(){
 	gRevisao = new Chart($('#revisao')[0].getContext('2d'), revisa);
 	gGasto = new Chart($('#graficoGastoMensal')[0].getContext('2d'), gasto);
 	
+	updateCharts(getCarroSelecionado());
+	me.$("#carroSelecionado").val(Session.get("selected")._id);
+
 });
 
 Template.dashboard.helpers({
-	carroSelected: function(){return getSelectedCar();}	
+	carroSelected: function(){ return getCarroSelecionado(); },
+	mesText: mesLabel[new Date().getMonth()],
+	meusVeiculos: $Carro.find()	
 });
 
 
@@ -102,49 +103,55 @@ Template.dashboard.helpers({
 
 Template.dashboard.events({
 	'change #carroSelecionado'(e){
-		Session.set('selected', e.target.value);
-		updateCharts();
+		updateCharts(getCarroSelecionado(e.target.value));
 	}
 
 });
 
-
-function getSelectedCar(){
-	var a;
-	if(Session.get('selected') == null)
-		a = Carros.findOne();
+function getCarroSelecionado(id){
+	var car;	
+	if(typeof Session.get('selected') === 'undefined'){
+		car = $Carro.findOne();
+		Session.set('selected', car);
+	}
 	else
-		a = Carros.findOne({_id: Session.get('selected')});
-	updateCharts(a);
-	return a;
+		if(typeof id === 'undefined')
+			return Session.get('selected');
+		else if(typeof Session.get('selected')._id === id)
+			return Session.get('selected');
+		else{
+			car = $Carro.findOne({_id: id});
+			Session.set('selected', car);
+		}	
+	return car;
 }
 
+
+
+
 function updateCharts(car){
-	if(car != null){
-		//console.log(car);
-		var calibraTempo = Math.round((new Date().getTime()-car.rodas.calibrado.getTime())/(1000*60*60*24));
-		troca.data.datasets[0].data[0] = 50000-car.rodas.km; // KM Restante
-		troca.data.datasets[0].data[1] = car.rodas.km; // KM Rodados
-		troca.options.elements.center.text = Math.round((car.rodas.km/50000)*100)+"%";
-		gTroca.update();
-		calibra.data.datasets[0].data[0] = (20-calibraTempo < 0)?0:20-calibraTempo; // Dias Restantes
-		calibra.data.datasets[0].data[1] = calibraTempo; // Dias Percorridos
-		calibra.options.elements.center.text = Math.round((calibraTempo/20)*100)+"%";
-		gCalibra.update();	
-		revisa.data.datasets[0].data[0] = 10000-car.revisao; // KM Restantes
-		revisa.data.datasets[0].data[1] = car.revisao; // KM Percorridos
-		revisa.options.elements.center.text = Math.round((car.revisao/10000)*100)+"%";
-		gRevisao.update();	
+	if(typeof car === 'undefined')
+		car = getCarroSelecionado();
+	var calibraTempo = Math.round((new Date().getTime()-car.rodas.calibrado.getTime())/(1000*60*60*24));
+	troca.data.datasets[0].data[0] = 50000-car.rodas.km; // KM Restante
+	troca.data.datasets[0].data[1] = car.rodas.km; // KM Rodados
+	troca.options.elements.center.text = Math.round((car.rodas.km/50000)*100)+"%";
+	gTroca.update();
+	calibra.data.datasets[0].data[0] = (20-calibraTempo < 0)?0:20-calibraTempo; // Dias Restantes
+	calibra.data.datasets[0].data[1] = calibraTempo; // Dias Percorridos
+	calibra.options.elements.center.text = Math.round((calibraTempo/20)*100)+"%";
+	gCalibra.update();	
+	revisa.data.datasets[0].data[0] = 10000-car.revisao; // KM Restantes
+	revisa.data.datasets[0].data[1] = car.revisao; // KM Percorridos
+	revisa.options.elements.center.text = Math.round((car.revisao/10000)*100)+"%";
+	gRevisao.update();	
 
-
-		for(let startIndex = car.gastoPorMes[0].data.getMonth(); startIndex<= car.gastoPorMes[0].data.getMonth()+5; startIndex++){
-			var a = startIndex;
-			if(a >= 12)
-				a -=12;
-			gasto
-		}
-		
-
-
+	gasto.data.labels = [];
+	gasto.data.datasets[0].data = [];
+	var mesAtual = new Date().getMonth();
+	for(let index = mesAtual - 4; index <= mesAtual; index++){
+		gasto.data.labels.push(mesLabel[index]);
+		gasto.data.datasets[0].data.push(car.gastoPorMes[index].valor);
 	}
+	gGasto.update();	
 }

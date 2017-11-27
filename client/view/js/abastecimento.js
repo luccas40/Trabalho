@@ -1,4 +1,3 @@
-import { Carros } from '/imports/collections/carros';
 import { Session } from 'meteor/session';
 var me = this;
 
@@ -9,8 +8,9 @@ Template.abastecimento.helpers({
 			{desc:"Litros", nome:'litros', tipo:"number"},
 			{desc:"Data", nome:'data', tipo:"date"},
 			{desc:"Valor (R$)", nome:'valor', tipo:"Number"},
-			{desc:"Carro", nome:'carroID', tipo:"combobox", items:Carros.find()}
-	]}
+			{desc:"Carro", nome:'carroID', tipo:"combobox", items:$Carro.find()}
+	]},
+	meusAbastecimentos: $Abastecimento.find()
 });
 
 

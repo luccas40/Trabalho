@@ -1,19 +1,18 @@
 <head>
-	<title>Projeto de estudo</title>
+  <title>Projeto de estudo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 </head>
+
 <body>
-	
 </body>
-
 <template name="loginTemplate">
-<div class="col-md-5 centered centeredVertically" >{{> yield "conteudo"}}</div>
-
+	<div class="col-md-5 centered centeredVertically" >{{> yield "conteudo"}}</div>	
 </template>
 
-<template name="appTemplate">
+<template name="layout">
 	<div id="wrapper">
-			<div class="overlay"></div>
-		
+			<div class="overlay"></div>		
 			<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
 				<ul id="links" class="nav sidebar-nav">
 					<li class="sidebar-brand">
@@ -48,7 +47,7 @@
 					<span class="hamb-middle"></span>
 					<span class="hamb-bottom"></span>
 				</button>
-				<div class="container" style="margin: 0 15%">{{> yield "conteudo"}}</div>
+				<div class="container" style="margin: 0 12%">{{> yield "conteudo"}}</div>
 			</div>
     </div>
 </template>

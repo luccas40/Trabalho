@@ -1,6 +1,3 @@
-import '../login.html';
-
-
 Template.formulario.events({
 	'submit #login'(e){
 		e.preventDefault();

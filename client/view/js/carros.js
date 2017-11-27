@@ -9,7 +9,8 @@ Template.meusCarros.helpers({
 			{desc:"Ano", nome:'ano', tipo:"Number"},
 			{desc:"KM Atual", nome:'kmatual', tipo:"Number"},
 			{desc:"KM/L", nome:'kml', tipo:"Number"}
-	]}
+	]},
+	meusVeiculos: $Carro.find()
 });
 
 
@@ -62,7 +63,7 @@ Template.meusCarros.events({
 		const id = this._id;
 		swal({
 		  title: "Tem certeza?",
-		  text: "Uma vez deletado, você não poderá recuperar!",
+		  text: "Uma vez deletado, vocï¿½ nï¿½o poderï¿½ recuperar!",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
 		  confirmButtonText: "Sim!",
