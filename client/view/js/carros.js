@@ -52,10 +52,10 @@ Template.meusCarros.events({
 		
 		Meteor.call('carro.save', carro, Session.get('selectedItem'), function(err, result){
 			if(err){
-				swal("Oops!", "Alguma coisa deu errado", "error")
+				swal("Oops!", "Alguma coisa deu errado", "error");
 			}else{
 				me.$("#formularioCadCar").modal("toggle");				
-			}			
+			}
 		});
 	},
 	'click button[name=delete]'(e){

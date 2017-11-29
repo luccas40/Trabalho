@@ -24,7 +24,7 @@
 			<div class="col-md-3 col-sm-6 col-xs-12 borderDireito">
 				<span class="topText"><i class="fa fa-clock-o"></i> KM Percorridos</span>
 				<div class="topNumber">{{carroSelected.kmAtual}}</div>
-				<span class="topText"><a href="#">Corrigir</a></span>
+				<span class="topText"><a href="#" data-toggle="modal" data-target="#modalCorrgir">Corrigir</a></span>
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-12 borderDireito">
 				<span class="topText"><i class="fa fa-clock-o"></i> Eventos Agendados</span>
@@ -36,12 +36,12 @@
 			<div class="col-md-3 col-sm-4 col-xs-12 roundedSized sla" style="background-color:white">
 				<h3 align=center style="color:black">Troca de Pneus</h3>
 				<canvas id="troca"></canvas>
-				<div align=center><a href="" class="btn btn-warning">Trocar</a></div>
+				<div align=center><a href="#" data-toggle="modal" data-target="#modalTrocaPneus" class="btn btn-warning">Trocar</a></div>
 			</div>	
 			<div class="col-md-3 col-sm-4 col-xs-12 roundedSized sla" style="background-color:white">
 				<h3 align=center style="color:black">Calibragem</h3>
 				<canvas id="calibragem"></canvas>
-				<div align=center><a href="" class="btn btn-warning">Calibrar</a></div>
+				<div align=center><a href="#" data-toggle="modal" data-target="#modalCalibrar" class="btn btn-warning">Calibrar</a></div>
 			</div>	
 			<div class="col-md-3 col-sm-9 col-xs-12 roundedSized sla" style="background-color:white">
 				<h3 align=center style="color:black">Revisão</h3>
@@ -52,5 +52,84 @@
 		<div class="col-md-12 col-sm-12 col-xs-12 roundedSized" style="background-color:white;" >
 			<canvas id="graficoGastoMensal"></canvas>
 		</div>
-	</div>	
+	</div>
+
+	<!-- Modalssssssssssssssssssss -->
+	<div class="modal fade" id="modalTrocaPneus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h2 class="modal-title" style="color:black;" id="exampleModalLabel"><b>Troca de Pneus</b></h2>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<form id="pneuTroca">
+				<div class="modal-body">				  
+					<div class="form-group">
+						<label for="data" class="form-control-label">Data:</label>
+						<input type="Date" step="any" value="" class="form-control" id="data">
+					</div>			  
+					<div class="form-group">
+						<label for="valor" class="form-control-label">Valor:</label>
+						<input type="Number" step="any" value="" class="form-control" id="valor">
+					</div>	
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				  <button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+			  </form>
+		  </div>
+		</div>
+	</div>
+	<div class="modal fade" id="modalCorrgir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title" style="color:black;" id="exampleModalLabel"><b>Corrigir Quilometragem</b></h2>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form id="kmCorrigir">
+				<div class="modal-body">  
+					<div class="form-group">
+						<label for="km" class="form-control-label">Quilometragem:</label>
+						<input type="Number" step="any" value="" class="form-control" id="km">
+					</div>	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="modalCalibrar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h2 class="modal-title" style="color:black;" id="exampleModalLabel"><b>Calibrar Rodas</b></h2>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form id="Calibrar">
+				<div class="modal-body">  
+					<div class="form-group">
+						<label for="data" class="form-control-label">Data:</label>
+						<input type="Date" step="any" value="" class="form-control" id="data">
+					</div>	
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	  
 </template>

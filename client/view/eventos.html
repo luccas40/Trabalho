@@ -5,12 +5,10 @@
 		<table class="table table-striped">
 		  <thead class="thead-inverse">
 			<tr>
-			  <th>#</th>
-			  <th>Descrição</th>
-			  <th>Tipo</th>
-			  <th>Valor</th>
-			  <th>Data</th>
-			  <th>Carro</th>
+				<th>#</th>
+				{{#each campos.inputs}}
+				<th>{{desc}}</th>
+				{{/each}}
 			  <th width="5%"></th>
 			  <th width="5%"></th>
 			</tr>

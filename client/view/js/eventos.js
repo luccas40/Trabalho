@@ -4,11 +4,13 @@ var me = this;
 Template.eventos.helpers({
     eventos: $Evento.find(),
 	campos:	{formName:"cadEventos", inputs: [
-			{desc:"Descricao", nome:'descricao', tipo:"text"},
+			{desc:"Descrição", nome:'descricao', tipo:"text"},
 			{desc:"Tipo", nome:'tipo', tipo:"combobox", items:[
-				{_id:'Gasolina', modelo:'Gasolina'}, 
+				{_id:'Troca de Pneus', modelo:'Troca de Pneus'}, 
 				{_id:'Revisao', modelo:'Revisao'}, 
-				{_id:'Multa', modelo:'Multa'}]},
+				{_id:'Multa', modelo:'Multa'},
+				{_id:'Outros', modelo:'Outros'}
+			]},
 			{desc:"Valor", nome:'valor', tipo:"number"},
             {desc:"Data", nome:'data', tipo:"date"},
             {desc:"Carro", nome:'carro', tipo:"combobox", items:$Carro.find()}            
@@ -33,7 +35,7 @@ Template.eventos.events({
 		me.$("#tipo").val(this.tipo);
         me.$("#valor").val(this.valor);        
         me.$("#data").val(new Date(this.data).yyyymmdd());
-        me.$("#carro").val(this.carro);
+        me.$("#carro").val(this.carroID);
 		me.$("#modalEvento").modal("show");
 	},
 	'submit #cadEventos'(e){
@@ -43,7 +45,7 @@ Template.eventos.events({
 			tipo: e.target.tipo.value,
 			valor: Number(e.target.valor.value),
             data: new Date(e.target.data.value),
-            carro: e.target.carro.value,
+            carroID: e.target.carro.value,
 			owner: 'owner'
 		}
 		

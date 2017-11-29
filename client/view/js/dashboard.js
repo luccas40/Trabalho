@@ -18,7 +18,8 @@ Template.dashboard.onRendered(function(){
 	Gasto = new Chart($('#graficoGastoMensal')[0].getContext('2d'), $gasto);
 	
 	updateCharts();
-	me.$("#carroSelecionado").val(Session.get("selected")._id);
+	if(typeof Session.get("idCarroSelecionado") !== 'undefined')
+		me.$("#carroSelecionado").val(Session.get("idCarroSelecionado"));
 
 });
 
@@ -40,24 +41,43 @@ Template.dashboard.helpers({
 Template.dashboard.events({
 	'change #carroSelecionado'(e){
 		updateCharts(getCarroSelecionado(e.target.value));
+	},
+	'submit #pneuTroca'(e){
+		e.preventDefault();
+		Meteor.call('carro.trocaPneu', getCarroSelecionado(), e.target.valor.value, e.target.data.value, function(err, result){
+			if(err){
+				swal("Oops!", "Alguma coisa deu errado", "error")
+			}else{
+				me.$("#modalTrocaPneus").modal("toggle");
+				updateCharts(getCarroSelecionado());				
+			}			
+		});
+	},		
+	'submit #kmCorrigir'(e){
+		e.preventDefault();
+		console.log('corrigiu'+getCarroSelecionado().modelo);
+	},
+	'submit #Calibrar'(e){
+		e.preventDefault();
+		console.log('calibrou'+getCarroSelecionado().modelo);
 	}
 
 });
 
 function getCarroSelecionado(id){
 	var car;	
-	if(typeof Session.get('selected') === 'undefined'){
-		car = $Carro.findOne();
-		Session.set('selected', car);
+	if(typeof Session.get('idCarroSelecionado') === 'undefined'){
+		if(typeof id === 'undefined') car = $Carro.findOne();
+		else car = $Carro.findOne({_id: id});
+		Session.set('idCarroSelecionado', car._id);
 	}
 	else
-		if(typeof id === 'undefined')
-			return Session.get('selected');
-		else if(typeof Session.get('selected')._id === id)
-			return Session.get('selected');
+		if(typeof id === 'undefined'){
+			car = $Carro.findOne({_id: Session.get('idCarroSelecionado')});
+		}
 		else{
 			car = $Carro.findOne({_id: id});
-			Session.set('selected', car);
+			Session.set('idCarroSelecionado', car._id);
 		}	
 	return car;
 }
@@ -69,17 +89,17 @@ function updateCharts(car){
 	if(typeof car === 'undefined')
 		car = getCarroSelecionado();
 	var CalibraTempo = Math.round((new Date().getTime()-car.rodas.calibrado.getTime())/(1000*60*60*24));
-	Troca.data.datasets[0].data[0] = 50000-car.rodas.km; // KM Restante
-	Troca.data.datasets[0].data[1] = car.rodas.km; // KM Rodados
-	Troca.options.elements.center.text = Math.round((car.rodas.km/50000)*100)+"%";
+	Troca.data.datasets[0].data[0] = car.rodas.km; // KM Rodados
+	Troca.data.datasets[0].data[1] = 50000-car.rodas.km; // KM Restante
+	Troca.options.elements.center.text = Math.round(((50000-car.rodas.km)/50000)*100)+"%";
 	Troca.update();
-	Calibra.data.datasets[0].data[0] = (20-CalibraTempo < 0)?0:20-CalibraTempo; // Dias Restantes
-	Calibra.data.datasets[0].data[1] = CalibraTempo; // Dias Percorridos
-	Calibra.options.elements.center.text = Math.round((CalibraTempo/20)*100)+"%";
+	Calibra.data.datasets[0].data[0] = CalibraTempo; // Dias Percorridos
+	Calibra.data.datasets[0].data[1] = (20-CalibraTempo < 0)?0:20-CalibraTempo; // Dias Restantes
+	Calibra.options.elements.center.text = Math.round((((20-CalibraTempo < 0)?0:20-CalibraTempo)/20)*100)+"%";
 	Calibra.update();	
-	Revisao.data.datasets[0].data[0] = 10000-car.revisao; // KM Restantes
-	Revisao.data.datasets[0].data[1] = car.revisao; // KM Percorridos
-	Revisao.options.elements.center.text = Math.round((car.revisao/10000)*100)+"%";
+	Revisao.data.datasets[0].data[0] = car.revisao; // KM Percorridos
+	Revisao.data.datasets[0].data[1] = 10000-car.revisao; // KM Restantes
+	Revisao.options.elements.center.text = Math.round(((10000-car.revisao)/10000)*100)+"%";
 	Revisao.update();	
 
 	Gasto.data.labels = [];

@@ -92,7 +92,7 @@ Meteor.methods(
 			tipo: String,
 			valor: Number,
 			data: Date,
-			carro: String,
+			carroID: String,
 			owner: String
 		});		
 	evento.owner = this.userId;

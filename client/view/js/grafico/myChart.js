@@ -59,7 +59,7 @@ $gasto = {
 
 $troca = {
 	type: 'doughnut',
-	data: {	labels: ["KM Restante", "KM Percorrido"],
+	data: {	labels: ["KM Percorrido", "KM Restante"],
 			datasets: [{data: [0, 0], backgroundColor: ["#9c9d9e", "#36A2EB"], hoverBackgroundColor: ["#b6b8ba", "#36A2EB"]}]
 	},
 	options: {elements: { center: { text: '0%', color: '#FF6384', fontStyle: 'Arial', sidePadding: 20}}, legend: {display: false}}
@@ -67,7 +67,7 @@ $troca = {
 
 $calibra = {
 	type: 'doughnut',
-	data: {	labels: ["Dias Restantes", "Dias Percorridos"],
+	data: {	labels: ["Dias Percorridos", "Dias Restantes"],
 			datasets: [{data: [0, 0], backgroundColor: ["#9c9d9e", "#8000bc"], hoverBackgroundColor: ["#b6b8ba", "#9a00e2"]}]
 	},
 	options: {elements: { center: { text: '0%', color: '#FF6384', fontStyle: 'Arial', sidePadding: 20}}, legend: {display: false}}
@@ -77,8 +77,8 @@ $revisa = {
 	type: 'doughnut',
 	data: {
 		labels: [
-		  "KM Restante",
-		  "KM Percorrido"
+		  "KM Percorrido",
+		  "KM Restante"
 		],
 		datasets: [{
 			data: [0, 0],

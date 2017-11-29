@@ -6,12 +6,9 @@
 		  <thead class="thead-inverse">
 			<tr>
 			  <th>#</th>
-			  <th>Marca</th>
-			  <th>Modelo</th>
-			  <th>Placa</th>
-			  <th>Ano</th>
-			  <th>KM Rodados</th>
-			  <th>KM/L</th>
+				{{#each campos.inputs}}
+				<th>{{desc}}</th>
+				{{/each}}
 			  <th width="2%"></th>
 			  <th width="2%"></th>
 			</tr>
