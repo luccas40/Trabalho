@@ -28,7 +28,7 @@
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-12 borderDireito">
 				<span class="topText"><i class="fa fa-clock-o"></i> Eventos Agendados</span>
-				<div class="topNumber">3</div>
+				<div class="topNumber">{{eventosCount}}</div>
 				<span class="topText"><i class="green"><i class="fa fa-sort-asc"></i> Atual</i> </span>
 			</div>
 		</div>
@@ -46,12 +46,11 @@
 			<div class="col-md-3 col-sm-9 col-xs-12 roundedSized sla" style="background-color:white">
 				<h3 align=center style="color:black">Revisão</h3>
 				<canvas id="revisao"></canvas>
-				<div align=center><a href="" class="btn btn-warning">Marcar Revisão</a></div>
+				<div align=center><a href="eventos" class="btn btn-warning">Marcar Revisão</a></div>
 			</div>				
 		</div>
 		<div class="col-md-12 col-sm-12 col-xs-12 roundedSized" style="background-color:white;" >
 			<canvas id="graficoGastoMensal"></canvas>
 		</div>
-		<!--<div class="col-md-12 calendario">{{> fullcalendar id="myCalendar"}}</div>-->
 	</div>	
 </template>

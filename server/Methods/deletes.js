@@ -21,3 +21,10 @@ Meteor.methods(
         $Corrida.remove(id);
     }
 });
+
+Meteor.methods(
+    {'evento.delete'(id){
+        check(id, String);		
+        $Evento.remove(id);
+    }
+});

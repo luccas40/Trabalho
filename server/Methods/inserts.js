@@ -84,3 +84,23 @@ Meteor.methods(
 	
 	}
 });
+
+Meteor.methods(
+	{'evento.save'(evento, id){
+		check(evento, {
+			descricao: String,
+			tipo: String,
+			valor: Number,
+			data: Date,
+			carro: String,
+			owner: String
+		});		
+	evento.owner = this.userId;
+	if(id == null){	
+		$Evento.insert(evento);		
+	}else{
+		$Evento.update(id, {$set:evento});
+	}
+	
+	}
+});

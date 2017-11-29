@@ -12,3 +12,7 @@ Meteor.publish('abastecimentos', function(){
 Meteor.publish('corridas', function(){
     return $Corrida.find({owner: this.userId});		
 });
+
+Meteor.publish('eventos', function(){
+    return $Evento.find({owner: this.userId});		
+});
