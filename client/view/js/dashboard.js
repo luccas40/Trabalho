@@ -44,7 +44,9 @@ Template.dashboard.events({
 	},
 	'submit #pneuTroca'(e){
 		e.preventDefault();
-		Meteor.call('carro.trocaPneu', getCarroSelecionado(), e.target.valor.value, e.target.data.value, function(err, result){
+		let evento = {valor: e.target.valor.value, data: new Date(e.target.data.value)};
+		console.log(evento);
+		Meteor.call('carro.trocaPneu', getCarroSelecionado(), evento, null, function(err, result){
 			if(err){
 				swal("Oops!", "Alguma coisa deu errado", "error")
 			}else{
@@ -55,11 +57,25 @@ Template.dashboard.events({
 	},		
 	'submit #kmCorrigir'(e){
 		e.preventDefault();
-		console.log('corrigiu'+getCarroSelecionado().modelo);
+		Meteor.call('carro.corrigirKM', getCarroSelecionado(), e.target.km.value, function(err, result){
+			if(err){
+				swal("Oops!", "Alguma coisa deu errado", "error")
+			}else{
+				me.$("#modalCorrigir").modal("toggle");
+				updateCharts(getCarroSelecionado());				
+			}			
+		});
 	},
 	'submit #Calibrar'(e){
 		e.preventDefault();
-		console.log('calibrou'+getCarroSelecionado().modelo);
+		Meteor.call('carro.calibrar', getCarroSelecionado(), e.target.data.value, function(err, result){
+			if(err){
+				swal("Oops!", "Alguma coisa deu errado", "error")
+			}else{
+				me.$("#modalCalibrar").modal("toggle");
+				updateCharts(getCarroSelecionado());				
+			}			
+		});
 	}
 
 });

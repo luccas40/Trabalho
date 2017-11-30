@@ -3,7 +3,9 @@ import { check } from 'meteor/check';
 
 Meteor.methods(
     {'carro.delete'(id){
-        check(id, String);		
+        check(id, String);	
+        $Evento.remove({carroID: id});
+        $Abastecimento.remove({carroID: id});
         $Carro.remove(id);
     }
 });

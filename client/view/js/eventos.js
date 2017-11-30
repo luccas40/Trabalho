@@ -7,7 +7,7 @@ Template.eventos.helpers({
 			{desc:"Descrição", nome:'descricao', tipo:"text"},
 			{desc:"Tipo", nome:'tipo', tipo:"combobox", items:[
 				{_id:'Troca de Pneus', modelo:'Troca de Pneus'}, 
-				{_id:'Revisao', modelo:'Revisao'}, 
+				{_id:'Revisao', modelo:'Revisão'}, 
 				{_id:'Multa', modelo:'Multa'},
 				{_id:'Outros', modelo:'Outros'}
 			]},
@@ -47,15 +47,32 @@ Template.eventos.events({
             data: new Date(e.target.data.value),
             carroID: e.target.carro.value,
 			owner: 'owner'
+		};
+		if(evento.tipo === 'Revisao'){
+			Meteor.call('carro.revisao', $Carro.findOne({_id: evento.carroID}), evento, Session.get('selectedItem'), function(err, result){
+				if(err){
+					swal("Oops!", "Alguma coisa deu errado", "error")
+				}else{
+					me.$("#modalEvento").modal("toggle");				
+				}			
+			});
+		}else if(evento.tipo === 'Troca de Pneus'){
+			Meteor.call('carro.trocaPneu', $Carro.findOne({_id: evento.carroID}), evento, Session.get('selectedItem'), function(err, result){
+				if(err){
+					swal("Oops!", "Alguma coisa deu errado", "error")
+				}else{
+					me.$("#modalEvento").modal("toggle");				
+				}			
+			});
+		}else {
+			Meteor.call('evento.save', evento, Session.get('selectedItem'), function(err, result){
+				if(err){
+					swal("Oops!", "Alguma coisa deu errado", "error")
+				}else{
+					me.$("#modalEvento").modal("toggle");				
+				}			
+			});
 		}
-		
-		Meteor.call('evento.save', evento, Session.get('selectedItem'), function(err, result){
-			if(err){
-				swal("Oops!", "Alguma coisa deu errado", "error")
-			}else{
-				me.$("#modalEvento").modal("toggle");				
-			}			
-		});
 	},
 	'click button[name=delete]'(e){
 		e.preventDefault();
